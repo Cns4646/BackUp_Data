@@ -3,7 +3,7 @@ name: Backup Data from API
 on:
   schedule:
     - cron: '0 0 * * *' # Every day at 00:00 UTC
-  workflow_dispatch:     # Manual trigger
+  workflow_dispatch:     # Manual run
 
 jobs:
   backup:
@@ -17,8 +17,9 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+      # ❌ npm install not needed since no package.json
+      # - name: Install dependencies
+      #   run: npm install
 
       - name: Run backup script
         run: node backup.js
